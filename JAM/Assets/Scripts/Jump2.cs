@@ -19,17 +19,19 @@ public class Jump2 : MonoBehaviour {
 	void Update () {
 	bool IsGrounded = false;
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 0.8f, mask);
+		RaycastHit2D hitc = Physics2D.Raycast(transform.position, -Vector2.up, 0.8f, mask2);
         if (hit.collider != null) {
         	IsGrounded = true;
         	doubleJump = true;
         }
-        else{
-			RaycastHit2D hitc = Physics2D.Raycast(transform.position, -Vector2.up, 0.8f, mask2);
-	        if (hitc.collider != null) {
+        	if (hitc.collider == null) {
+					Physics2D.IgnoreLayerCollision(8, 11, true);
+	        }
+	        if (!IsGrounded && hitc.collider != null) {
+
+			Debug.Log("Doppio parry");
 					Physics2D.IgnoreLayerCollision(8, 11, false);
 	        }
-        	
-        }
 
 
 		if(Input.GetButton("Fire1") && (IsGrounded || doubleJump)){
