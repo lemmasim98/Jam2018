@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterScript : MonoBehaviour {
+	public LayerMask mask_ostacoli;
+	public LayerMask mask_ground;
+	public LayerMask mask_secondo;
 
-	public LayerMask mask;
-	public LayerMask mask1;
 	Animator anim;
-	public float marcia = 0.15f;
+	
+	float movimento = 0.15f;
+
+	//velocità a cui si muove il personaggio
+	float marcia = 0.15f;
+
+	//timer da attivare in caso di collisione con ostacoli
 	float t = 0f;
 
 
@@ -16,7 +23,6 @@ public class CharacterScript : MonoBehaviour {
 	Rigidbody2D rb;
 	bool doubleJump = true;
 	//public LayerMask mask;
-	public LayerMask mask2;
 	//Animator anim;
 	// Use this for initialization
 	void Start () {
@@ -30,12 +36,12 @@ public class CharacterScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.Translate(marcia, 0, 0);
-		RaycastHit2D hituff = Physics2D.Raycast(transform.position, Vector2.right, 0.4f, mask);
+		RaycastHit2D hituff = Physics2D.Raycast(transform.position, Vector2.right, 0.4f, mask_ostacoli);
         if (hituff.collider != null) {
         	Debug.Log("Contatto");
         	anim.SetBool("inciamp", true);
 			Physics2D.IgnoreLayerCollision(8, 10, true);
-			marcia = 0.75f;
+			marcia = movimento/2;
 			t = 1.5f;
         }
         if(t>0){
@@ -43,7 +49,7 @@ public class CharacterScript : MonoBehaviour {
         }
         if(t<0){
         	anim.SetBool("inciamp", false);
-        	marcia = 0.1f;
+        	marcia = movimento;
         	t=0;
         }
 		//pressione di un tasto negli assi
@@ -54,8 +60,8 @@ public class CharacterScript : MonoBehaviour {
 		}*/
 
 			bool IsGrounded = false;
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 0.8f, mask1);
-		RaycastHit2D hitc = Physics2D.Raycast(transform.position, -Vector2.up, 0.8f, mask2);
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 0.8f, mask_ground);
+		RaycastHit2D hitc = Physics2D.Raycast(transform.position, -Vector2.up, 0.8f, mask_secondo);
         if (hit.collider != null) {
         	IsGrounded = true;
         	doubleJump = true;
@@ -68,7 +74,7 @@ public class CharacterScript : MonoBehaviour {
 
 			Debug.Log("Doppio parry");
 					Physics2D.IgnoreLayerCollision(8, 11, false);
-					marcia = 0.3f;
+					marcia = 2 * movimento;
 	        }
 
 
