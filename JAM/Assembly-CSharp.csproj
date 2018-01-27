@@ -52,9 +52,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CharacterScript.cs" />
-     <Compile Include="Assets\Scripts\Jump.cs" />
-     <Compile Include="Assets\Scripts\Jump2.cs" />
-     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\Discarded\Jump.cs" />
+     <Compile Include="Assets\Scripts\Discarded\Jump2.cs" />
+     <Compile Include="Assets\Scripts\Discarded\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\SkyScript.cs" />
  <Reference Include="UnityEngine.UIAutomation">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
  </Reference>

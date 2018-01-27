@@ -17,7 +17,7 @@ TagManager:
   - Ground
   - Ostacoli
   - Secondo
-  - 
+  - Fine
   - 
   - 
   - 
@@ -44,8 +44,20 @@ TagManager:
   - name: Next Level
     uniqueID: 3333378547
     locked: 0
+  - name: Cielo
+    uniqueID: 1493633847
+    locked: 0
+  - name: Sfondo
+    uniqueID: 2983456277
+    locked: 0
+  - name: Orizzonte
+    uniqueID: 3448243711
+    locked: 0
   - name: Ground
     uniqueID: 345072183
+    locked: 0
+  - name: Ostacolo
+    uniqueID: 4217427247
     locked: 0
   - name: Player
     uniqueID: 3420797711
