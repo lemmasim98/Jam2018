@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour {
 
-	public Rigidbody rb;
+	public Rigidbody2D rb;
 	public int height;
 	public LayerMask groundLayer;
 	public bool doubleJump;
@@ -12,19 +12,21 @@ public class Jump : MonoBehaviour {
 	bool IsGrounded() {
 		Vector2 position = transform.position;
 		Vector2 direction = Vector2.down;
-		float distance = 1.0f;
+		float distance = 0.7f;
 
 		RaycastHit2D hit = Physics2D.Raycast (position, direction, distance, groundLayer);
 		if (hit.collider != null) {
-			return true;
+			Debug.Log("cazzo");
 			doubleJump = true;
+			return true;
+			//doubleJump = true;
 		}
 		return false;
 	}
 
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody> ();
+		rb = GetComponent<Rigidbody2D> ();
 		bool doubleJump = true;
 	}
 	
@@ -34,7 +36,7 @@ public class Jump : MonoBehaviour {
 			if (IsGrounded ()) {
 				rb.AddForce (Vector2.up * height);
 			}
-			if (doubleJump) {
+			else if (doubleJump) {
 				doubleJump = false;
 				rb.AddForce (Vector2.up * height);
 			}
