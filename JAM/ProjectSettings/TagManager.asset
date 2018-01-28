@@ -18,7 +18,7 @@ TagManager:
   - Ostacoli
   - Secondo
   - Fine
-  - 
+  - Discesa
   - 
   - 
   - 
@@ -41,9 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Next Level
-    uniqueID: 3333378547
-    locked: 0
   - name: Cielo
     uniqueID: 1493633847
     locked: 0
@@ -52,6 +49,9 @@ TagManager:
     locked: 0
   - name: Orizzonte
     uniqueID: 3448243711
+    locked: 0
+  - name: Next Level
+    uniqueID: 3333378547
     locked: 0
   - name: Ground
     uniqueID: 345072183

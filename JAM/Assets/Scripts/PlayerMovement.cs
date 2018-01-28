@@ -5,29 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public float marcia = 0.1f;
+	float movimento = 0.1f;
+	float marcia = 0.1f;
 	public float mod = 1;
-	public Rigidbody2D rb;
-	public SpriteRenderer render;
+	Rigidbody2D rb;
 	public bool doubleJump = true;
 	public bool IsGrounded;
 	public float t = 0f;
 	public LayerMask mask_ground;
 	public LayerMask mask_secondo;
+	public LayerMask mask_discesa;
 	float decelerazione = 0f;
+	float robaalpha = 0f;
 	Animator anim;
-	float movimento = 0.12f;
 	// Use this for initialization
 	void Start () {
-		rb = GetComponent<Rigidbody2D> ();			//rigidBody initialization
-		render = GetComponent<SpriteRenderer> ();
+		rb = GetComponent<Rigidbody2D> ();			
 		anim= GetComponent<Animator>();
 		bool doubleJump = true;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		
+		metodoalpha();
 		marcia-=decelerazione;
 		if(marcia>0)
 			transform.Translate(marcia, 0, 0);
@@ -48,9 +48,13 @@ public class PlayerMovement : MonoBehaviour {
 
 			Debug.Log("Doppio parry");
 					Physics2D.IgnoreLayerCollision(8, 11, false);
-					marcia = 2 * movimento;
+					//marcia = 2 * movimento;
 	        }
 
+			RaycastHit2D hitdisc = Physics2D.Raycast(transform.position, -Vector2.up, 0.8f, mask_discesa);
+		       	if (hitdisc.collider != null) {
+		       		robaalpha=0.02f;
+	        }
 
 		if(Input.GetButtonDown("Fire1") && (IsGrounded || doubleJump)){
 			anim.SetBool("jump", true);
@@ -73,7 +77,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (t < 0) {
 			//anim.SetBool("inciamp", false);
 			Physics2D.IgnoreLayerCollision (8, 10, false);
-			marcia *= 2;
+			marcia = movimento;
 			t = 0;
 		}
 	}
@@ -89,13 +93,14 @@ public class PlayerMovement : MonoBehaviour {
 			Debug.Log ("Ouch");
 			//anim.SetBool("inciamp", true);
 			Physics2D.IgnoreLayerCollision (8, 10, true);
-			marcia /= 2;
-			t = 1.5f;
+			marcia = movimento / 2;
+			t = 1.0f;
 		}
 		if (coll.gameObject.layer == 11) {
 			anim.SetBool("jump", false);
-			Debug.Log("roba");
-			decelerazione = 0.01f;
+			marcia +=0.03f;
+
+		       		robaalpha=-0.01f;
 		}
 		if (coll.gameObject.layer == 12) {
 			Debug.Log("roba");
@@ -111,10 +116,23 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void OnCollisionExit2D (Collision2D coll) {
+		if (coll.gameObject.layer == 11) {
 		rb.gravityScale = 1.0f;
+			marcia -=0.03f;
+		}
 	}
 
 	public void example(){
 		Debug.Log ("Esperimento riuscito");
+	}
+
+	void metodoalpha(){
+
+		       		GameObject cielo = GameObject.Find("cielo");
+		       		Color tmp = cielo.GetComponent<SpriteRenderer>().color;
+		       		if((tmp.a>=0 && robaalpha>0) || (tmp.a<=1 && robaalpha<0) ){
+ 					tmp.a = tmp.a-robaalpha;
+					cielo.GetComponent<SpriteRenderer>().color = tmp;
+				}
 	}
 }
