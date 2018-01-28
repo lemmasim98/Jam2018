@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 82053132392945280}
   - component: {fileID: 95991187974525886}
   - component: {fileID: 61970640840848668}
+  - component: {fileID: 114732569165742380}
   m_Layer: 8
   m_Name: Character
   m_TagString: Untagged
@@ -297,13 +298,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b638cd744420f490e9aa19831ab56e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  marcia: 0.1
   mod: 1
-  rb: {fileID: 0}
-  render: {fileID: 0}
   doubleJump: 1
   IsGrounded: 0
   t: 0
+  mask_ground:
+    serializedVersion: 2
+    m_Bits: 0
+  mask_secondo:
+    serializedVersion: 2
+    m_Bits: 0
+  mask_discesa:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &114732569165742380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1845856838362972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc06740df75c444489c16c059bebd9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorial2: {fileID: 8300000, guid: ea4b81cc85fb2084d99daabee7784487, type: 3}
+  tutorial3: {fileID: 0}
+  tutorial5: {fileID: 0}
+  mask_audio:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!124 &124347209197657814
 Behaviour:
   m_ObjectHideFlags: 1

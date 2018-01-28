@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Tutorial 2
+  - Tutorial 3
+  - Tutorial 5
+  - warning1
+  - Risposta1
+  - Macchine
   layers:
   - Default
   - TransparentFX
@@ -19,7 +25,7 @@ TagManager:
   - Secondo
   - Fine
   - Discesa
-  - 
+  - Audio
   - 
   - 
   - 

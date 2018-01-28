@@ -8,7 +8,6 @@ public class CharacterScript : MonoBehaviour {
 	public LayerMask mask_ground;
 	public LayerMask mask_secondo;
 	public LayerMask mask_fine;
-	public LayerMask mask_discesa;
 
 	Animator anim;
 	
