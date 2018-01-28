@@ -10,6 +10,7 @@ TagManager:
   - warning1
   - Risposta1
   - Macchine
+  - Cartello
   layers:
   - Default
   - TransparentFX
